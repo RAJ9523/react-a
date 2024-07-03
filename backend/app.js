@@ -8,7 +8,7 @@ import UserRouter from"./Router/UserRouter.js"
 import JobRouter from "./Router/JobRouter.js";
 import ApplicationRouter from "./Router/ApplicationRouter.js";
 import { errorMiddleware } from "./middleware/error.js";
-
+import path from 'path'
 
 
 
@@ -22,6 +22,7 @@ app.use(cors({
 
 }));
 
+const __dirname=path.resolve();
 
 app.use(cookieParser());
 app.use(express.json());
@@ -38,9 +39,14 @@ app.use("/api/v1/user",UserRouter);
 app.use("/api/v1/job",JobRouter);
 app.use("/api/v1/application",ApplicationRouter);
 
+app.use(express.static(path.join(__dirname,'/frontend/dist')));
+app.get('*',(req,res)=>{
+
+  res.sendFile(path.join(__dirname,'frontend','dist','index.html'));
+})
+
 
 app.use(errorMiddleware);
 dbConnection();
-
 
 export default app;
