@@ -8,7 +8,7 @@ import UserRouter from"./Router/UserRouter.js"
 import JobRouter from "./Router/JobRouter.js";
 import ApplicationRouter from "./Router/ApplicationRouter.js";
 import { errorMiddleware } from "./middleware/error.js";
-import path from 'path'
+import path from 'path';
 
 
 
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname,'/frontend/dist')));
 app.get('*',(req,res)=>{
 
   res.sendFile(path.join(__dirname,'frontend','dist','index.html'));
-})
+});
 
 
 app.use(errorMiddleware);
