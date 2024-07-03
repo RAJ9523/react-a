@@ -16,7 +16,7 @@ export const postJob=catchAsyncErrors(async(req,res,next)=>{
 
   const {role}=req.user;
   
-  if(role==="JobSeeker")
+    if(role==="JobSeeker")
     {
       return next(new ErrorHandler(`${role} is not allowed to access this resource`,400));
     }
@@ -45,7 +45,7 @@ const {Title,Description, Location,Country,Category, FixedSalary,
       res.status(200).json(
         {
         success:true,
-        meassage:"Job Posted Successfully",
+        message:"Job Posted Successfully",
         jobs
 
         }
@@ -68,9 +68,7 @@ res.status(200).json({
     success:true,
     jobs,
 });
-
-
-}); 
+});
 
 export const updateJob=catchAsyncErrors(async(req,res,next)=>{
    const role=req.user;
@@ -107,14 +105,13 @@ export const deleteJob=catchAsyncErrors(async(req,res,next)=>{
 
 if(role==="Job Seeker")
 {
-  return next(new ErrorHandler(`${role} Is Not Authorized  To Access`,400));
-
+    return next(new ErrorHandler(`${role} Is Not Authorized  To Access`,400));
 }
 const {id}=req.params;
 
 let job =await Job.findById(id);
 
-  if(!job)
+     if(!job)
     {
        return next(new ErrorHandler("Job Not Found!",404));
     }
@@ -125,5 +122,28 @@ let job =await Job.findById(id);
     success:true,
     message:"Job Deleted Sucessfully",
   });
+
+});
+
+export const jobdetails=catchAsyncErrors(async(req,res,next)=>{
+
+
+  const {id}=req.params;
+
+
+
+  let job =await Job.findById(id);
+
+  if(!job)
+    {
+       return next(new ErrorHandler("NO Job Details Available!",404));
+    }
+
+    res.status(200).json({
+   success:true,
+   job,
+    
+     })
+
 
 });

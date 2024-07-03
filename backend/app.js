@@ -8,7 +8,7 @@ import UserRouter from"./Router/UserRouter.js"
 import JobRouter from "./Router/JobRouter.js";
 import ApplicationRouter from "./Router/ApplicationRouter.js";
 import { errorMiddleware } from "./middleware/error.js";
-import Resourcerouter from './Router/ResourceRouter.js'
+
 
 
 
@@ -37,7 +37,7 @@ app.use(fileUpload( {
 app.use("/api/v1/user",UserRouter);
 app.use("/api/v1/job",JobRouter);
 app.use("/api/v1/application",ApplicationRouter);
-app.use("/api/v1/resource",Resourcerouter);
+
 
 app.use(errorMiddleware);
 dbConnection();

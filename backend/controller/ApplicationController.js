@@ -10,7 +10,7 @@ export const PostApplication=catchAsyncErrors(async(req,res,next)=>{
 
       if(role==="Employer")
         {
-           return next(new ErrorHandler(`${role} Is Not Allowed To Access This Resource`,400));
+           return next(new ErrorHandler(`${role} Is Not Allowed To Post Application`,400));
         }
 
 
@@ -22,7 +22,7 @@ export const PostApplication=catchAsyncErrors(async(req,res,next)=>{
             const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
             if (!allowedFormats.includes(resume.mimetype)) {
               return next(
-                new ErrorHandler("Invalid file type. Please upload a PNG file.", 400)
+                new ErrorHandler("Invalid file type. Please upload a PNG file.", 401)
               );
             }
             const cloudinaryResponse = await cloudinary.uploader.upload(
@@ -48,10 +48,9 @@ export const PostApplication=catchAsyncErrors(async(req,res,next)=>{
             if (!jobDetails) {
               return next(new ErrorHandler("Job not found!", 404));
             }
-          
+             
             const employerID = {
-              user: jobDetails.
-              jobpostedby,
+              user: jobDetails.jobpostedby,
               role: "Employer",
             };
             if (
@@ -78,6 +77,7 @@ export const PostApplication=catchAsyncErrors(async(req,res,next)=>{
                 public_id: cloudinaryResponse.public_id,
                 url: cloudinaryResponse.secure_url,
               },
+              appliedto,
             });
             res.status(200).json({
               success: true,
@@ -95,9 +95,9 @@ export const employergetallapplication=catchAsyncErrors(async(req,res,next)=>{
         {
             return next(new ErrorHandler(`${role}  Is Not Authorized  To Access This Resource`,400));
         }
-const {_id}=req.user._id;
+const {id}=req.user;
 
-const applications =await Application.find({"EmployerId.user":_id});
+const applications =await Application.find({"employerID.user":id});
 
 res.status(200).json({
 sucess:"true",
@@ -114,7 +114,7 @@ export const  jobseekergetallapplication=catchAsyncErrors(async(req,res,next)=>{
     {
         return next(new ErrorHandler(`${role} Is Not Allowed To Access This Resource`,400));
     }
-  const {_id}=req.user._id;
+  const {_id}=req.user;
 
   const applications=await Application.find({"applicantID.user":_id})
 
@@ -141,8 +141,27 @@ export const jobseekerdeleteallapplication=catchAsyncErrors(async(req,res,next)=
 
     res.status(200).json({
      success:true,
-     message:"message is succssfully deleted",
+     message:"Application  is succssfully deleted",
 
     });
 
+});
+
+export const updateapplication=catchAsyncErrors(async(req,res,next)=>{
+ const {role}=req.user;
+ const {status}=req.body;
+  const {id}=req.params;
+
+
+  const updatedItem = await Application.findOneAndUpdate(
+    { _id: id },
+    { status },
+    { new: true }
+  );
+  res.status(200).json({
+    success:true,
+    message:"Application  Updated Succssfully",
+    updatedItem,
+   });
+  
 });
