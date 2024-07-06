@@ -38,7 +38,7 @@ app.use("/api/v1/user",UserRouter);
 app.use("/api/v1/job",JobRouter);
 app.use("/api/v1/application",ApplicationRouter);
 
-app.use(express.static(path.join(__dirname,'/frontend/dist')));
+
 
 
 app.use(errorMiddleware);
