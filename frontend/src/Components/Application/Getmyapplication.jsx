@@ -12,7 +12,7 @@ const ApplicationDetails = () => {
     useEffect(() => {
         const fetchApplication = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/v1/application/jobseekergetapplication`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/application/jobseekergetapplication`, {
                     withCredentials: true,
                 });                setApplications(response.data.applications || null);
             } catch (error) {
@@ -25,7 +25,7 @@ const ApplicationDetails = () => {
 
     const handleDeleteApplication = async (applications) => {
       try {
-          const data = await axios.delete(`http://localhost:8000/api/v1/application/delete/${applications._id}`, {
+          const data = await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/application/delete/${applications._id}`, {
               withCredentials: true,
           });
           toast.success(data.message);

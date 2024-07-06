@@ -91,7 +91,7 @@ const Viewmyjobs = () => {
   };
     const handleDelete = async (jobs) => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/v1/job/delete/${jobs._id}`,
+            const response = await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/job/delete/${jobs._id}`,
                  {
                 withCredentials: true,
             });

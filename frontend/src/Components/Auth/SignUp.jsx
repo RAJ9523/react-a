@@ -30,7 +30,7 @@ const SignUp= () => {
     try {
       const { data } =await axios
         .post(
-          "http://localhost:8000/api/v1/user/Register",
+          `${import.meta.env.VITE_API_ENDPOINT}/api/v1/user/Register`,
           { name, email, phone, password, role },
           {
             withCredentials: true,

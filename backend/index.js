@@ -7,13 +7,7 @@ import cloudinary from "cloudinary"
       api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
     });
 
-    app.get('*',(req,res)=>{
-
-      res.json({
-        server:"server is working"
-      })
-    });
-    
+   
 
 app.listen(8000, ()=>{
     

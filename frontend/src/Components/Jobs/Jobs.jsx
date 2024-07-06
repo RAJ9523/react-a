@@ -12,7 +12,7 @@ const [jobs,setjobs]=useState([]);
   useEffect(() => {
     const fetchJobs = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/api/v1/job/getAllJobs", {
+            const response = await axios.get( `${import.meta.env.VITE_API_ENDPOINT}/api/v1/job/getAllJobs`, {
                 withCredentials: true,
             });
             setjobs(response.data.jobs || []);

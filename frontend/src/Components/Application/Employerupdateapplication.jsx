@@ -12,7 +12,7 @@ const Employerupdateapplication = () => {
         const fetchApplication = async () => {
 
              try {
-                const response = await axios.get(`http://localhost:8000/api/v1/application/employergetapplication`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/application/employergetapplication`, {
                     withCredentials: true,
                 });        
                 
@@ -28,7 +28,7 @@ const Employerupdateapplication = () => {
 
    const handleStatusUpdate = async (id, newStatus) => {
         try {
-            const {data} = await axios.put(`http://localhost:8000/api/v1/application/update/${id}`, 
+            const {data} = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/application/update/${id}`, 
                 { status: newStatus }, 
                 {
                    withCredentials: true,

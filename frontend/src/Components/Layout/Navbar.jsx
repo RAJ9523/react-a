@@ -11,13 +11,13 @@ const Navbar = () => {
   const{isAuthorized,user,setIsAuthorized,setUser}=useContext(Context);
 
     const navigateTo=useNavigate();
-    // Example function to handle logout
+ 
     const handleLogout = async(e) => {
         
       e.preventDefault();
       try{
 
-      const {data}=await axios.get("http://localhost:8000/api/v1/user/logout",
+      const {data}=await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/user/logout`,
         {
           withCredentials: true,
       });

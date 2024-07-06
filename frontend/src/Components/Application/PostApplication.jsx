@@ -39,7 +39,7 @@ const {id}=useParams();
     try{
 
     
-   const{data}=await axios.post("http://localhost:8000/api/v1/application/postapplication",
+   const{data}=await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/api/v1/application/postapplication`,
 
     formData,
     {

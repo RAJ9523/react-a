@@ -47,7 +47,7 @@ const PostJobForm = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/api/v1/job/postjob",
+        `${import.meta.env.VITE_API_ENDPOINT}/api/v1/job/postjob`,
         { Title, Description, Location, Country, Category, FixedSalary, SalaryFrom, Salaryto },
         {
           headers: {
