@@ -39,12 +39,6 @@ app.use("/api/v1/job",JobRouter);
 app.use("/api/v1/application",ApplicationRouter);
 
 app.use(express.static(path.join(__dirname,'/frontend/dist')));
-app.get('*',(req,res)=>{
-
-  res.json({
-    server:"server is working"
-  })
-});
 
 
 app.use(errorMiddleware);
