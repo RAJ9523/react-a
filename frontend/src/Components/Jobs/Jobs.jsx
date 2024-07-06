@@ -79,7 +79,7 @@ return (
               
                 href={`/job/${job._id}`}
               >
-                View Details
+                View Details Of Job
               </Button>
 
               </div>
