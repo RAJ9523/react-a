@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
-   
+  
   const{isAuthorized,user,setIsAuthorized,setUser}=useContext(Context);
 
     const navigateTo=useNavigate();
@@ -33,6 +33,7 @@ const Navbar = () => {
      }
     }
 
+   
     return (
         <AppBar position="static">
         <Toolbar>
@@ -55,7 +56,7 @@ const Navbar = () => {
                             All Jobs
                         </Button>
                     </Grid>
-                    {user.role === "Employer" && (
+                    {user&&user.role === "Employer" && (
                         <>
                             <Grid item>
                                 <Button component={Link} to="/job/Viewmyjobs" color="inherit" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -74,7 +75,7 @@ const Navbar = () => {
                             </Grid>
                         </>
                     )}
-                    {user.role === "JobSeeker" && (
+                    {user&&user.role === "JobSeeker" && (
                         <Grid item>
                             <Button component={Link} to="/application/me" color="inherit" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 My Applications
