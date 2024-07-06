@@ -41,7 +41,9 @@ app.use("/api/v1/application",ApplicationRouter);
 app.use(express.static(path.join(__dirname,'/frontend/dist')));
 app.get('*',(req,res)=>{
 
-  res.sendFile(path.join(__dirname,'frontend','dist','index.html'));
+  res.json({
+    server:"server is working"
+  })
 });
 
 
