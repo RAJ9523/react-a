@@ -14,13 +14,14 @@ import { errorMiddleware } from "./middleware/error.js";
 const app=express();
 
 dotenv.config({path:"./config/config.env"});
-console.log(process.env.FRONTEND_URL);
+
 app.use(cors({
     origin:true,
     methods:["PUT","GET","POST","DELETE"],
     credentials:true,
 
-}));
+})
+);
 
 
 
@@ -35,9 +36,9 @@ app.use(fileUpload( {
     
 }));
 
-app.use("/api/v1/user",UserRouter);
-app.use("/api/v1/job",JobRouter);
-app.use("/api/v1/application",ApplicationRouter);
+app.use("/v1/user",UserRouter);
+app.use("/v1/job",JobRouter);
+app.use("/v1/application",ApplicationRouter);
 
 
 app.get('/test',(req,res)=>{
