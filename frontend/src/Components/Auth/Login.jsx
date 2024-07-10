@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import { Context } from '../../main';
 const Login = () => {
 
+  console.log(import.meta.env.VITE_API_ENDPOINT);
   const{isAuthorized,setIsAuthorized}=useContext(Context);
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
