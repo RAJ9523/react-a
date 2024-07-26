@@ -15,14 +15,12 @@ const app=express();
 
 dotenv.config({path:"./config/config.env"});
 
+
 app.use(cors({
     origin:true,
     methods:["PUT","GET","POST","DELETE"],
     credentials:true,
-
-})
-);
-
+}));;
 
 
 app.use(cookieParser());
@@ -36,9 +34,9 @@ app.use(fileUpload( {
     
 }));
 
-app.use("/v1/user",UserRouter);
-app.use("/v1/job",JobRouter);
-app.use("/v1/application",ApplicationRouter);
+app.use("/api/v1/user",UserRouter);
+app.use("/api/v1/job",JobRouter);
+app.use("/api/v1/application",ApplicationRouter);
 
 
 app.get('/test',(req,res)=>{

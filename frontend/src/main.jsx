@@ -4,9 +4,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import {CssBaseline} from '@mui/material'
 
-export const Context = createContext({
-  isAuthorized: false,
-});
+export const Context = createContext(
+  
+);
 
 const AppWrapper = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);

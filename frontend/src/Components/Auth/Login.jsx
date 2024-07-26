@@ -18,17 +18,21 @@ import { toast } from "react-toastify";
 import { Context } from '../../main';
 const Login = () => {
 
-  console.log(import.meta.env.VITE_API_ENDPOINT);
+  
   const{isAuthorized,setIsAuthorized}=useContext(Context);
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
   const [role, setrole] = useState('');
 const NavigateTo=useNavigate();
+
+
+
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_ENDPOINT}/api/v1/user/login`,
+          `http://localhost:8000/api/v1/user/login`,
           { email, password, role },
           {
             headers: {
@@ -37,15 +41,16 @@ const NavigateTo=useNavigate();
             withCredentials: true,
           }
         );
+        console.log(data);
+        setIsAuthorized(true);
         toast.success(data.message);
         setemail("");
         setpassword("");
         setrole("");
         NavigateTo('/');
-        setIsAuthorized(true);
       
       } catch (error) {
-        toast.error(error.response.data.message);
+       console.log("Error",error);
       }
   };
 

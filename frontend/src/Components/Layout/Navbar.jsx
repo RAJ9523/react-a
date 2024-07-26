@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from 'react';
 import {AppBar, Toolbar, Typography, Button, Grid, Avatar,Box } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -7,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
-  
+   
   const{isAuthorized,user,setIsAuthorized,setUser}=useContext(Context);
 
     const navigateTo=useNavigate();
@@ -33,7 +32,6 @@ const Navbar = () => {
      }
     }
 
-   
     return (
         <AppBar position="static">
         <Toolbar>
@@ -56,7 +54,7 @@ const Navbar = () => {
                             All Jobs
                         </Button>
                     </Grid>
-                    {user&&user.role === "Employer" && (
+                    {user.role === "Employer" && (
                         <>
                             <Grid item>
                                 <Button component={Link} to="/job/Viewmyjobs" color="inherit" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -75,7 +73,7 @@ const Navbar = () => {
                             </Grid>
                         </>
                     )}
-                    {user&&user.role === "JobSeeker" && (
+                    {user.role === "JobSeeker" && (
                         <Grid item>
                             <Button component={Link} to="/application/me" color="inherit" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 My Applications

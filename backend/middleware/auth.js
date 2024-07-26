@@ -31,7 +31,7 @@ export const isAuthorized =catchAsyncErrors(
 async(req,res,next)=>{
 
   const {token}=req.cookies;
- 
+  console.log(req.cookies);
   if(!token)
   {
       return next(new ErrorHandler("User Is Not  Authenticated",400));
